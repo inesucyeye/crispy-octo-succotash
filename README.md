@@ -3,13 +3,13 @@ Knock Knock Joke Server
 
 
 Sign Up For Slack: Post Usernames Here
-1. Mark
-2. Jordan
-3. Ines
-4. Michael
-5. Clayton
-6. Wei
-7. Sarah
+  1. Mark
+  2. Jordan
+  3. Ines
+  4. Michael
+  5. Clayton
+  6. Wei
+  7. Sarah
 
 To Do:
 Protocol -  Mark
