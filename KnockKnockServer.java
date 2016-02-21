@@ -3,10 +3,11 @@ import java.io.*;
 
 public class KnockKnockServer {															
 	public static void main(String[] args) throws NumberFormatException, IOException {  // NumberFormatException used for converting 
+		@SuppressWarnings("null")						// this prevents a timeout warning
 		System.out.println("The Knock Knock Joke Server is running.");					// bufferedreader string to an integer
 		ServerSocket serverSocket = null;
 		Socket clientSocket = null;
-		serverSocket.setSoTimeout(10000);
+		serverSocket.setSoTimeout(180000);					// this is a timeout after 3 mintues... not sure if it works
 		
 		try { 																	// Attempts to create a socket at port 8675
 			serverSocket = new ServerSocket(8675);
@@ -36,7 +37,6 @@ public class KnockKnockServer {
 		
 		while ((inputLine = Integer.valueOf(in.readLine())) != 999) {
 			outputLine = kkp.processInput(inputLine);
-			clientSocket.setSoTimeout(60000);							           		// this is a timeout after 1 minute
 			if (inputLine == 100)
 				System.out.println("Do you want to hear a Knock Knock Joke?");
 			else if (inputLine == 110 || inputLine == 777 || inputLine == 999) {
