@@ -1,0 +1,38 @@
+Knock Knock Protocol (v2, simplified & clarified)
+
+-------------------------------------------------------------------------------------------------------------------------
+
+Server always out there listening ...
+Waiting for a client to initiate communication ...
+
+
+C:	100	Client initiates communication with Server by sending 100 (up to programmer of client application how to position this)
+
+S:	200	Server acknowledges client contact by sending back 200, always asks in response to a 100:  "Hello, would you like to hear a knock knock joke? (respond: Y/N)"
+
+		// "Hello, would you like to hear a knock knock joke? (Y/N)" is actually translated on the client side from the received 200
+
+C:	110	If client declines (within the client application) with "N", client sends 110 and break connection
+C:	111	If client accepts (within the client application) with "Y", client sends 111 to continue conversation
+C:	999	Client application gives client 3 chances to respond to server code 200 with an acceptable "Y" or "N", otherwise break connection with 999
+
+S:	210	Server responds to client's accept by sending back 210, in response to a 111, with lead in to joke "Knock, knock. (respond: Who's there?)"
+
+		// "Knock, knock." also is actually translated on the client side from the received 111
+
+C:	120	Client responds with: "Who's there?" ... anything besides some acceptable form of "Who's there?" should reprompt client until acceptable reply
+C:	999	Client application gives client 3 chances to respond to server code 210 with an acceptable form of "Who's there?" and sends 120, otherwise break connection with 999
+
+S:	220	Server replies to client's 120 code: with a code of 220 which is translated on the client side as "King Tut (respond: King Tut who?)"
+
+C:	130	Client responds to server's 220 code with a 130 code: 130 is the code sent upon an acceptable string resembling "King Tut who?"
+C:	999	Client application gives client 3 chances to respond to server code 220 with an acceptable "King Tut who?" (translates to 130), otherwise break connection with 999
+
+S:	230	Server replies to client's 130 code: with a 230 code which is translated on the client side as:
+			"KINGTUTKEY FRIED CHICKEN!"
+			"Good bye."
+			Breaks connection with 999.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Layer on a timeout (888) from the server if the client does not respond w
