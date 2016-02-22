@@ -55,6 +55,9 @@ public class KnockKnockServer {
 
 				out.println(outputLine);
 			}
+		out.close();
+		in.close();
+		clientSocket.close();
 		serverSocket.close();
 		} catch (IOException e) {
 			System.err.println("Yo.");
