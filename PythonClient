@@ -19,80 +19,80 @@ sock = socket.socket(
 # - the normal http port
 sock.connect((host, port))
 
-sock.send(100) #initiate the connection with the server
+sock.send("100\n") #initiate the connection with the server
 
 accpt = sock.recv(4096)  #receive confirmation from the server
 
-if accpt == 200: #if the correct confirmation code was received
-    print sock.recv(4096) 				#print the next thing that the server sends
+if accpt == "200\n": #if the correct confirmation code was received
+    print "Would you like to hear a knock-knock joke?"                 #print the next thing that the server sends
 
 #May want to consider adding in an else, i.e. if server is sending wrong thing.
     
 
 response1 = raw_input('Please enter y/n')          #http://stackoverflow.com/questions/70797/python-user-input-and-commandline-arguments
-print ("you entered", response1);		#print response, useful for debugging
+print ("you entered", response1);        #print response, useful for debugging
 
 count = 0;
 while response1 != "y" and response1 != "n":
-    count+= 1;					#increments incorrect responses
+    count+= 1;                    #increments incorrect responses
     if count == 3:
-    	sock.send(110) 				#send code to decline
+        sock.send("110\n")                 #send code to decline
         print ("you have now had 3 incorrect replies.  Program terminating")
-	quit();					#could also use sys.exit() 
+    quit();                    #could also use sys.exit() 
     response1 = input("Please enter something: ");
 
 if response1 == "y":
-    sock.send(111) 				#send confirmation code
-    print ("'y' reply sent to server")		# this reply here primarily for debugging purposes
+    sock.send("111\n")                 #send confirmation code
+    print ("'y' reply sent to server")        # this reply here primarily for debugging purposes
 
 if response1 == "n":
-    sock.send(110) 				#send code to decline
-    print("'n' reply sent to server");		# this reply here primarily for debugging purposes
-    quit();					#could also use sys.exit() 
+    sock.send("110\n")                 #send code to decline
+    print("'n' reply sent to server");        # this reply here primarily for debugging purposes
+    quit();                    #could also use sys.exit() 
 
 
 
     
 accpt = sock.recv(4096)  #receive confirmation from the server
     
-if accpt == 210: #if server sends the correct code
-    print sock.recv(4096) #print the next thing that the server sends
-    print "Knock Knock"				#is this redundant?
+if accpt == "210\n": #if server sends the correct code
+ #   print sock.recv(4096) #print the next thing that the server sends
+    print "Knock Knock"                #is this redundant?
 
 
-responseWho = input("Respond with 'Who's there? enter y/n");          #http://stackoverflow.com/questions/70797/python-user-input-and-commandline-arguments
-print ("you entered" + responseWho);		#print response, useful for debugging
+responseWho = raw_input("Respond with 'Who's there? enter y/n");          #http://stackoverflow.com/questions/70797/python-user-input-and-commandline-arguments
+print ("you entered" + responseWho);        #print response, useful for debugging
 
-count = 0;					#reset count
+count = 0;                    #reset count
 while responseWho != "y" and responseWho != "n":
-    count+= 1;					#increments incorrect responses
+    count+= 1;                    #increments incorrect responses
     if count == 3:
-    	sock.send(999) 				#send code to decline
+        sock.send("999\n")                 #send code to decline
         print ("you have now had 3 incorrect replies.  Program terminating")
-	quit();					#could also use sys.exit() 
+    quit();                    #could also use sys.exit() 
     responseWho = input("Please enter something: ");
 
 if responseWho == "y":
-    sock.send(120) 				#send confirmation code
-    print ("'y' reply sent to server")		# this reply here primarily for debugging purposes
+    sock.send("120\n")                 #send confirmation code
+    print ("'y' reply sent to server")        # this reply here primarily for debugging purposes
 
 if responseWho == "n":
-    sock.send(999) 				#send code to decline
-    print("'n' reply sent to server");		# this reply here primarily for debugging purposes
-    quit();					#could also use sys.exit() 
+    sock.send("999\n")                 #send code to decline
+    print("'n' reply sent to server");        # this reply here primarily for debugging purposes
+    quit();                    #could also use sys.exit() 
 
 
 
 accpt = sock.recv(4096)
 
-if accpt == 220: #if server sends the correct code
-    print sock.recv(4096) #print the next thing that the server sends
-  
+if accpt == "220\n": #if server sends the correct code
+    print ("received 220")
+    #print sock.recv(4096) #print the next thing that the server sends
 
-whodey = "King Tut"  				#if we want to code multiple knock knocks, will need to change this to be code specific
+whodey = "King Tut"                  #if we want to code multiple knock knocks, will need to change this to be code specific
 print (whodey);
 
-response2 = input("To continue joke, please type previous line and 'who': ");          #http://stackoverflow.com/questions/70797/python-user-input-and-commandline-arguments
+response2 = raw_input("To continue joke, please type previous line and 'who': ");          #http://stackoverflow.com/questions/70797/python-user-input-and-commandline-arguments
 print ("you entered" + response2);
 who= " who"
 corresponse2 = (whodey+who);
@@ -103,21 +103,22 @@ count = 0;
 while response2 != corresponse2:
     count+= 1;
     if count == 3:
-    	sock.send(999) 				#send code to decline
+        sock.send("999\n")                 #send code to decline
         print ("you have now had 3 incorrect replies.  Program terminating")
-	quit();					#could also use sys.exit() 
+    quit();                    #could also use sys.exit() 
     response2 = input("Please enter something: ");
 
 
 if response2 == corresponse2:
     print("You entered corresponse2");
-    sock.send(130) 				#send confirmation code
+    sock.send("130\n")                 #send confirmation code
 
 
 accpt = sock.recv(4096)
 
-if accpt == 230: #if server sends the correct code
-    print sock.recv(4096) #print the next thing that the server sends
-    print "Ha ha ha!"
+if accpt == "230\n": #if server sends the correct code
+#    print sock.recv(4096) #print the next thing that the server sends
+    print("Ha ha ha!")
 
+sock.send("999\n")
 sock.close()
