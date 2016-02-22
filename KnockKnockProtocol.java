@@ -5,9 +5,8 @@ public class KnockKnockProtocol {
     private static final int sentPhrase = 3;
 
     private int state = waiting;
-
-    public int processInput(int theInput) {
         int theOutput = 0;
+    public int processInput(int theInput) {
 
         if (state == waiting) {
         	if (theInput == 100)
